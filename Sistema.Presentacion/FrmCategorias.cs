@@ -87,7 +87,7 @@ namespace Sistema.Presentacion
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             this.Buscar();
-
+            this.Limpiar();
         }
 
         private void btnInsertar_Click(object sender, EventArgs e)
@@ -115,16 +115,11 @@ namespace Sistema.Presentacion
                     {
                         this.MensajeError(Respuesta);
                     }
-
-
                 }
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
-
             }
         }
 
@@ -133,7 +128,6 @@ namespace Sistema.Presentacion
             this.Limpiar();
             this.Listar();
             tabControl1.SelectedIndex = 0;
-
         }
 
         private void DgvListado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -153,7 +147,6 @@ namespace Sistema.Presentacion
             {
                 MessageBox.Show("Seleccione desde la celda nombre");
             }
-
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -182,11 +175,7 @@ namespace Sistema.Presentacion
                     {
                         this.MensajeError(Respuesta);
                     }
-
-
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -220,16 +209,13 @@ namespace Sistema.Presentacion
             {
                 DataGridViewCheckBoxCell chkEliminar = (DataGridViewCheckBoxCell)DgvListado.Rows[e.RowIndex].Cells["Seleccionar"];
                 chkEliminar.Value = !Convert.ToBoolean(chkEliminar.Value);
-
             }
-
-
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            try
             {
+            try
+                {
                 // Verificar si al menos un registro está seleccionado
                 bool alMenosUnoSeleccionado = false;
                 foreach (DataGridViewRow fila in DgvListado.Rows)
@@ -249,45 +235,43 @@ namespace Sistema.Presentacion
 
                 // Continuamos con el proceso de activación
                 DialogResult Opocion;
-                Opocion = MessageBox.Show("¿Deseas elimino el registro?", "Sistema de ventas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                Opocion = MessageBox.Show("¿Deseas eliminar el registro?", "Sistema de ventas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (Opocion == DialogResult.OK)
-                {
+                    {
                     int codigo;
                     string Rpta = "";
 
                     foreach (DataGridViewRow item in DgvListado.Rows)
-                    {
+                        {
                         if (Convert.ToBoolean(item.Cells[0].Value))
                             {
+
                             codigo = Convert.ToInt32(item.Cells[1].Value);
                             Rpta = NegocioCategorias.Eliminar(codigo);
 
-                            codigo= Convert.ToInt32(item.Cells[1].Value);
-                            Rpta=NegocioCategorias.Eliminar(codigo);
-
                             if (Rpta.Equals("Ok"))
-                            {
-                                this.MensajeOk("Se eliminó correctamente: " + Convert.ToString(item.Cells[2].Value));
-                            }
+                                {
+                                this.MensajeOk("Se elimino correctamente: " + Convert.ToString(item.Cells[2].Value));
+                                }
                             else
-                            {
+                                {
                                 this.MensajeError(Rpta);
+                                }
+
                             }
 
                         }
-                        
-                    }
                     this.Listar();
+                    }
+
                 }
-          
-            }
             catch (Exception ex)
-            {
+                {
 
                 MessageBox.Show(ex.Message + ex.StackTrace);
+                }
             }
-        }
 
         private void btnActivar_Click(object sender, EventArgs e)
         {
@@ -411,7 +395,7 @@ namespace Sistema.Presentacion
 
                 MessageBox.Show(ex.Message + ex.StackTrace);
             }
-            }
+         }
 
         private void tabGeneral_Click(object sender, EventArgs e)
         {

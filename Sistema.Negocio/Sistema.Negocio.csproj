@@ -44,5 +44,15 @@
     <Compile Include="NegocioCategorias.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sistema.Datos\Sistema.Datos.csproj">
+      <Project>{203A9382-1421-4292-9E54-6F157DDD3794}</Project>
+      <Name>Sistema.Datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sistema.Entidades\Sistema.Entidades.csproj">
+      <Project>{ABD13394-116E-4BE0-BB88-522F53E6A75C}</Project>
+      <Name>Sistema.Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

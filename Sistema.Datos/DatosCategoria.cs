@@ -1,4 +1,5 @@
-﻿using Sistema.Entidades;
+﻿
+using Sistema.Entidades;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -164,12 +165,13 @@ namespace Sistema.Datos
         }
 
         public string Delete(int id)
-        {
+            {
+
             string respuesta = "";
             SqlConnection sqlconn = new SqlConnection();
 
             try
-            {
+                {
                 sqlconn = Conexion.getInstancia().CrearConexion();
                 SqlCommand cmd = new SqlCommand("categoria_eliminar", sqlconn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -178,22 +180,22 @@ namespace Sistema.Datos
                 sqlconn.Open();
                 respuesta = cmd.ExecuteNonQuery() == 1 ? "Ok" : " No se pudo eliminar el registro";
 
-            }
+                }
             catch (Exception ex)
-            {
+                {
                 respuesta = ex.Message;
 
-            }
+                }
             finally
-            {
+                {
 
                 if (sqlconn.State == ConnectionState.Open) sqlconn.Close();
 
-            }
+                }
             return respuesta;
+            }
 
 
-        }
 
         public string Activar(int id)
         {

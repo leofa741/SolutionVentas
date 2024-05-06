@@ -1,8 +1,10 @@
-﻿using Sistema.Entidades;
+﻿
+using Sistema.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+
 namespace Sistema.Datos
 {
     public class DatosArticulos
