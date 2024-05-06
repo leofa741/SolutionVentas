@@ -229,7 +229,7 @@ namespace Sistema.Presentacion
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
-                {
+            {
                 // Verificar si al menos un registro está seleccionado
                 bool alMenosUnoSeleccionado = false;
                 foreach (DataGridViewRow fila in DgvListado.Rows)
@@ -252,40 +252,47 @@ namespace Sistema.Presentacion
                 Opocion = MessageBox.Show("¿Deseas elimino el registro?", "Sistema de ventas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (Opocion == DialogResult.OK)
-                    {
+                {
                     int codigo;
                     string Rpta = "";
 
                     foreach (DataGridViewRow item in DgvListado.Rows)
-                        {
+                    {
                         if (Convert.ToBoolean(item.Cells[0].Value))
                             {
                             codigo = Convert.ToInt32(item.Cells[1].Value);
                             Rpta = NegocioCategorias.Eliminar(codigo);
 
-                            if (Rpta.Equals("Ok"))
-                                {
-                                this.MensajeOk("Se eliminó correctamente: " + Convert.ToString(item.Cells[2].Value));
-                                }
-                            else
-                                {
-                                this.MensajeError(Rpta);
-                                }
-                            }
-                        }
-                    this.Listar();
-                    }
-                }
-            catch (Exception ex)
-                {
-                MessageBox.Show(ex.Message + ex.StackTrace);
-                }
-            }
+                            codigo= Convert.ToInt32(item.Cells[1].Value);
+                            Rpta=NegocioCategorias.Eliminar(codigo);
 
-       private void btnActivar_Click(object sender, EventArgs e)
-         {
-    try
-    {         
+                            if (Rpta.Equals("Ok"))
+                            {
+                                this.MensajeOk("Se eliminó correctamente: " + Convert.ToString(item.Cells[2].Value));
+                            }
+                            else
+                            {
+                                this.MensajeError(Rpta);
+                            }
+
+                        }
+                        
+                    }
+                    this.Listar();
+                }
+          
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void btnActivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
         // Verificar si al menos un registro está seleccionado
         bool alMenosUnoSeleccionado = false;
         foreach (DataGridViewRow fila in DgvListado.Rows)
@@ -304,46 +311,51 @@ namespace Sistema.Presentacion
         }
         
         // Continuamos con el proceso de activación
-        DialogResult Opocion;
+                DialogResult Opocion;
         Opocion = MessageBox.Show("¿Deseas activar el registro?", "Sistema de ventas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-        if (Opocion == DialogResult.OK)
-        {
-            int codigo;
-            string Rpta = "";
-
-            foreach (DataGridViewRow item in DgvListado.Rows)
-            {              
-                if (Convert.ToBoolean(item.Cells[0].Value))
+                if (Opocion == DialogResult.OK)
                 {
-                    codigo = Convert.ToInt32(item.Cells[1].Value);
-                    Rpta = NegocioCategorias.Activar(codigo);
+                    int codigo;
+                    string Rpta = "";
 
-                    if (Rpta.Equals("Ok"))
+                    foreach (DataGridViewRow item in DgvListado.Rows)
                     {
+                        if (Convert.ToBoolean(item.Cells[0].Value))
+                        {
+
+                            codigo = Convert.ToInt32(item.Cells[1].Value);
+                            Rpta = NegocioCategorias.Activar(codigo);
+
+                            if (Rpta.Equals("Ok"))
+                            {
                         this.MensajeOk("Se activó correctamente: " + Convert.ToString(item.Cells[2].Value));
+                            }
+                            else
+                            {
+                                this.MensajeError(Rpta);
+                            }
+
+                        }
+
                     }
-                    else
-                    {
-                        this.MensajeError(Rpta);
-                    }
+                    this.Listar();
                 }
-            }
-            this.Listar();
-        }
-                }
-    catch (Exception ex)
-          {
-        MessageBox.Show(ex.Message + ex.StackTrace);
-            }
 
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+
+        }
 
 
         private void btnDesactivar_Click(object sender, EventArgs e)
         {
             try
-                {
+            {
                 // Verificar si al menos un registro está seleccionado
                 bool alMenosUnoSeleccionado = false;
                 foreach (DataGridViewRow fila in DgvListado.Rows)
@@ -366,34 +378,39 @@ namespace Sistema.Presentacion
                 Opocion = MessageBox.Show("¿Deseas desactivar el registro?", "Sistema de ventas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (Opocion == DialogResult.OK)
-                    {
+                {
                     int codigo;
                     string Rpta = "";
 
                     foreach (DataGridViewRow item in DgvListado.Rows)
-                        {
+                    {
                         if (Convert.ToBoolean(item.Cells[0].Value))
-                            {
+                        {
+
                             codigo = Convert.ToInt32(item.Cells[1].Value);
                             Rpta = NegocioCategorias.Desactivar(codigo);
 
                             if (Rpta.Equals("Ok"))
-                                {
+                            {
                                 this.MensajeOk("Se desactivó correctamente: " + Convert.ToString(item.Cells[2].Value));
-                                }
-                            else
-                                {
-                                this.MensajeError(Rpta);
-                                }
                             }
+                            else
+                            {
+                                this.MensajeError(Rpta);
+                            }
+
                         }
-                    this.Listar();
+
                     }
+                    this.Listar();
                 }
+
+            }
             catch (Exception ex)
-                {
+            {
+
                 MessageBox.Show(ex.Message + ex.StackTrace);
-                }
+            }
             }
 
         private void tabGeneral_Click(object sender, EventArgs e)

@@ -9,7 +9,7 @@ namespace Sistema.Datos
     public class Conexion
     {
         private string Base;
-        private string Servidor; 
+        private string Servidor;
         private string Usuario;
         private string Clave;
         private bool Seguridad;

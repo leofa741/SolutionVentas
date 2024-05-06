@@ -108,7 +108,7 @@ namespace Sistema.Presentacion
         }
 
         private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
-            {
+        {
             // Verificar si ya hay una instancia de FrmCategorias abierta
             bool categoriaAbierta = false;
             foreach (Form form in this.MdiChildren)
@@ -131,9 +131,9 @@ namespace Sistema.Presentacion
             FrmCategorias frmcategorias = new FrmCategorias();
             frmcategorias.MdiParent = this;
             frmcategorias.Show();
-            }
-
-
-
         }
+
+
+
+    }
 }
