@@ -133,7 +133,31 @@ namespace Sistema.Presentacion
             frmcategorias.Show();
         }
 
+        private void articulosToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+            // Verificar si ya hay una instancia de FrmCategorias abierta
+            bool articuloAbierto = false;
+            foreach (Form form in this.MdiChildren)
+                {
+                if (form is FrmArticulos)
+                    {
+                    articuloAbierto = true;
+                    break;
+                    }
+                }
 
+            // Si ya hay una instancia abierta, mostrar un mensaje y no hacer nada más
+            if (articuloAbierto)
+                {
+                MessageBox.Show("Ya hay una ventana de articulos abierta.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+                }
 
-    }
+            // Si no hay una instancia abierta, crear una nueva y mostrarla
+            FrmArticulos frmarticulos = new FrmArticulos();
+            frmarticulos.MdiParent = this;
+            frmarticulos.Show();
+
+            }
+        }
 }

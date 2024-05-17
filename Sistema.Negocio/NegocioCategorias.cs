@@ -8,6 +8,15 @@ namespace Sistema.Negocio
 {
     public class NegocioCategorias
     {
+        public static DataTable Listar_categoria_selec()
+            {
+
+            DatosCategoria datosCategoria = new DatosCategoria();
+
+            return datosCategoria.listar_categoria_selec();
+
+            }
+
 
         public static DataTable Listar()
         {
@@ -99,12 +108,6 @@ namespace Sistema.Negocio
             return datosCategoria.Desactivar(idCategoria);
 
         }
-
-
-
-
-
-
 
 
 

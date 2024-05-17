@@ -9,6 +9,34 @@ namespace Sistema.Datos
     public class DatosCategoria
     {
 
+        public DataTable listar_categoria_selec()
+            {
+            SqlDataReader rdr;
+            DataTable tabla = new DataTable();
+            SqlConnection sqlconn = new SqlConnection();
+
+            try
+                {
+                sqlconn = Conexion.getInstancia().CrearConexion();
+                SqlCommand cmd = new SqlCommand("categoria_seleccionar", sqlconn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                sqlconn.Open();
+                rdr = cmd.ExecuteReader();
+                tabla.Load(rdr);
+                return tabla;
+
+                }
+            catch (Exception ex)
+                {
+                throw ex;
+                }
+            finally
+                {
+                if (sqlconn.State == ConnectionState.Open) sqlconn.Close();
+                }
+
+            }
+
         public DataTable listar()
         {
             SqlDataReader rdr;

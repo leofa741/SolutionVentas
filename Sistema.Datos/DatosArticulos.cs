@@ -6,10 +6,21 @@ using System.Data;
 using System.Data.SqlClient;
 
 namespace Sistema.Datos
-{
-    public class DatosArticulos
     {
+    public class DatosArticulos
+        {
+        private SqlConnection sqlconn;
 
+        public DatosArticulos(SqlConnection sqlconn)
+            {
+            this.sqlconn = Conexion.getInstancia().CrearConexion();
+            sqlconn.Open();
+
+            }
+
+        public DatosArticulos()
+            {
+            }
 
         public DataTable listar()
             {
@@ -176,6 +187,32 @@ namespace Sistema.Datos
             return respuesta;
             }
 
+        public string ActualizarCodigoBarras(int idArticulo, string codigoBarras)
+            {
+            string respuesta = "";
+            SqlConnection sqlconn = new SqlConnection();
+
+            try
+                {
+                sqlconn = Conexion.getInstancia().CrearConexion();
+                SqlCommand cmd = new SqlCommand("ActualizarCodigoBarras", sqlconn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@idarticulo", SqlDbType.Int).Value = idArticulo;
+                cmd.Parameters.Add("@codigo", SqlDbType.VarChar).Value = codigoBarras;
+                sqlconn.Open();
+                respuesta = cmd.ExecuteNonQuery() == 1 ? "Ok" : "No se pudo actualizar el código de barras";
+                }
+            catch (Exception ex)
+                {
+                respuesta = ex.Message;
+                }
+            finally
+                {
+                if (sqlconn.State == ConnectionState.Open) sqlconn.Close();
+                }
+            return respuesta;
+            }
+
         public string Delete(int id)
             {
             string respuesta = "";
@@ -249,7 +286,7 @@ namespace Sistema.Datos
                 sqlconn = Conexion.getInstancia().CrearConexion();
                 SqlCommand cmd = new SqlCommand("articulo_desactivar", sqlconn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@idcategoria", SqlDbType.Int).Value = id;
+                cmd.Parameters.Add("@idarticulo", SqlDbType.Int).Value = id;
 
                 sqlconn.Open();
                 respuesta = cmd.ExecuteNonQuery() == 1 ? "Ok" : " No se pudo desactivar el registro";
