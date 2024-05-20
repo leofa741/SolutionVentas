@@ -1,6 +1,13 @@
 ﻿using Sistema.Datos;
 using System;
 
+//DatabaseSaver(Observador)
+//Esta clase es un observador que guarda el nuevo código de barras en la base de datos.
+//Se suscribe al sujeto y, cuando se notifica, ejecuta la lógica para actualizar la base de datos.
+
+//ArticuloData
+//Esta clase maneja la interacción con la base de datos para actualizar el código de barras de un artículo.
+
 namespace Sistema.Negocio.Observers
     {
     public class DatabaseSaver : IObserver

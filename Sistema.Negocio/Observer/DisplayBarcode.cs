@@ -5,6 +5,10 @@ using SkiaSharp;
 using BarcodeStandard;
 using System;
 
+//DisplayBarcode(Observador)
+//Esta clase es un observador que actualiza la interfaz de usuario con el nuevo código de barras.
+//Se suscribe al sujeto y, cuando se notifica, actualiza un Panel para mostrar el código de barras.
+
 namespace Sistema.Negocio.Observers
     {
     public class DisplayBarcode : IObserver

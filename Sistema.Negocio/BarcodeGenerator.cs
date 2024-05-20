@@ -3,6 +3,10 @@ using Sistema.Negocio.Observers;
 using System;
 using System.Collections.Generic;
 
+//BarcodeGenerator(Sujeto)
+//Esta clase representa al sujeto en el patrón Observer.
+//Mantiene una lista de observadores y notifica a estos observadores cuando se genera un nuevo código de barras.
+
 namespace Sistema.Negocio
     {
     public class BarcodeGenerator : ISubject
